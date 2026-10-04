@@ -26,18 +26,11 @@ def union(A, B):  #Объединение множеств
     return list(set(A + B))
 
 
-def intersection(A, B):
+def intersection(A, B): #Пересечение множеств
     res = []
 
     for i in A:
         if i in B:
             res.append(i)
 
-    return res
-
-X = [1, 2, 3, 4, 5]
-Y = [3, 4, 5, 6, 7]
-
-X_intersection_Y = intersection(X, Y)
-
-print(X_intersection_Y)
+    return res 
