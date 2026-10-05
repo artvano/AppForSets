@@ -60,3 +60,6 @@ def subjects(A):     #Множество всех подмножеств
             res += [subject + [element]]
 
     return res
+
+def size_of_set(A):  #Мощность множества
+    return len(A)
