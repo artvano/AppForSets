@@ -1,5 +1,3 @@
-#Здесь хранятся функции для работы с множествами
-
 def check_univers(A, B, U): #Проверка на универс изменение множеств на удовлетворяющие универсу
     flag_for_A = True
     flag_for_B = True
@@ -34,3 +32,12 @@ def intersection(A, B): #Пересечение множеств
             res.append(i)
 
     return res 
+
+
+def simmetry_diff(A, B): #Симметрическая разность
+    intersection_1 = intersection(A, B)
+
+    A_for_res = [i for i in A if i not in intersection_1]
+    B_for_res = [i for i in B if i not in intersection_1]
+
+    return A_for_res + B_for_res
