@@ -1,4 +1,10 @@
 import customtkinter as ctk
+from sets_functions import (
+    check_univers, union, 
+    intersection, diff, 
+    symmetric_diff, addition, 
+    subsets, size_of_set
+)
 
 
 class SetsApp(ctk.CTk):
@@ -62,6 +68,8 @@ class SetsApp(ctk.CTk):
             command=self.next_step,
         )
 
+
+
     @staticmethod
     def _read_values(entry):
         return list(map(int, entry.get().split(", ")))
@@ -87,8 +95,39 @@ class SetsApp(ctk.CTk):
             self.sets["B"] = self._read_values(self.entry_B)
             self.current_step += 1
 
-            print(self.sets)
+            self.sets_label = ctk.CTkLabel(self, text="")
+            self.sets_label.pack()
+                
+            self.message_label = ctk.CTkLabel(self, text="")
+            self.message_label.pack()
+                
+            self.finish_input()
+            self.current_step += 1
 
+
+    def finish_input(self):
+        changes = check_univers(
+            self.sets["A"],
+            self.sets["B"],
+            self.sets["U"]
+        )
+
+        self.sets_label.configure(
+            text=f"\nU = {self.sets['U']}\n"
+            f"A = {self.sets['A']}\n"
+            f"B = {self.sets['B']}"
+        )
+
+        messages = []
+
+        if not changes["flag_for_A"]:
+            messages.append("Множество A изменено: удалены элементы, которых нет в U.")
+        if not changes["flag_for_B"]:
+            messages.append("Множество B изменено: удалены элементы, которых нет в U.")
+
+        self.message_label.configure(
+            text = "\n".join(messages) if messages else "Множества A и B не были изменены"
+        )
 
 if __name__ == "__main__":
     app = SetsApp()
