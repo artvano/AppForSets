@@ -38,7 +38,7 @@ def diff(A, B):  #Разность
     return [i for i in A if i not in B]
 
 
-def simmetry_diff(A, B): #Симметрическая разность
+def symmetric_diff(A, B): #Симметрическая разность
     intersection_1 = intersection(A, B)
 
     A_for_res = [i for i in A if i not in intersection_1]
@@ -51,7 +51,7 @@ def addition(A, U):    #Дополнение до универса
     return [i for i in U if i not in A]
 
 
-def subjects(A):     #Множество всех подмножеств
+def subsets(A):     #Множество всех подмножеств
     res = [[]]
 
     for element in A:
