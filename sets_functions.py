@@ -34,6 +34,10 @@ def intersection(A, B): #Пересечение множеств
     return res 
 
 
+def diff(A, B):  #Разность 
+    return [i for i in A if i not in B]
+
+
 def simmetry_diff(A, B): #Симметрическая разность
     intersection_1 = intersection(A, B)
 
@@ -42,17 +46,6 @@ def simmetry_diff(A, B): #Симметрическая разность
 
     return A_for_res + B_for_res
 
-def diff(A, B):  #Разность 
-    return [i for i in A if i not in B]
-
 
 def addition(A, U):    #Дополнение до универса
     return [i for i in U if i not in A]
-
-
-
-I = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-X = [2, 4, 6, 8, 10]
-
-print(addition(X, I))
