@@ -49,3 +49,14 @@ def simmetry_diff(A, B): #Симметрическая разность
 
 def addition(A, U):    #Дополнение до универса
     return [i for i in U if i not in A]
+
+
+def subjects(A):     #Множество всех подмножеств
+    res = [[]]
+
+    for element in A:
+        for i in range(len(res)):
+            subject = res[i]
+            res += [subject + [element]]
+
+    return res
