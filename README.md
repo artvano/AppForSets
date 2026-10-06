@@ -1,0 +1,24 @@
+# AppForSets
+---
+    Учебное приложение для выполнения базовых операций над множествами 
+
+## Запуск
+---
+1. Клонируйте репозиторий:
+```bash
+git clone https://github.com/artvano/App_for_sets
+cd App_for_sets
+```
+2. Создайте и активируйте виртуальное окружение:
+```bash
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+3. Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+4. Запустите программу
+```bash
+py main.py
+```
