@@ -136,6 +136,8 @@ class SetsApp(ctk.CTk):
         self.function_window = ctk.CTkToplevel(self)
         self.function_window.title("Выбор функции")
         self.function_window.geometry("600x350")
+        self.function_window.transient(self)
+        self.function_window.lift()
 
         self.left_frame = ctk.CTkFrame(self.function_window)
         self.left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
@@ -255,7 +257,6 @@ class SetsApp(ctk.CTk):
             text=f"Функция: {function_name}\nРезультат: {result}"
         )
         self.result_label.pack(pady=10)
-        self.function_window.destroy()
 
 
 if __name__ == "__main__":
