@@ -68,6 +68,7 @@ class SetsApp(ctk.CTk):
             command=self.next_step,
         )
 
+        self.result_label = ctk.CTkLabel(self, text="")
 
 
     @staticmethod
@@ -102,7 +103,9 @@ class SetsApp(ctk.CTk):
             self.message_label.pack()
                 
             self.finish_input()
-            self.current_step += 1
+            self.open_function_window()
+
+
 
 
     def finish_input(self):
@@ -128,6 +131,132 @@ class SetsApp(ctk.CTk):
         self.message_label.configure(
             text = "\n".join(messages) if messages else "Множества A и B не были изменены"
         )
+
+    def open_function_window(self):
+        self.function_window = ctk.CTkToplevel(self)
+        self.function_window.title("Выбор функции")
+        self.function_window.geometry("600x350")
+
+        self.left_frame = ctk.CTkFrame(self.function_window)
+        self.left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+
+        ctk.CTkLabel(self.left_frame, text="Операции над одним множеством").pack(pady=10)
+
+        ctk.CTkButton(
+            self.left_frame,
+            text="Дополнение A",
+            command=lambda: self.show_result(
+                "addition(A, U)",
+                addition(self.sets["A"], self.sets["U"])
+            )
+        ).pack(pady=5)
+
+        self.subsets_button = ctk.CTkButton(
+            self.left_frame,
+            text="Подмножества A",
+            command=lambda: self.show_result("subsets(A)", subsets(self.sets["A"]))
+        )
+        self.subsets_button.pack(pady=5)
+
+        self.size_button = ctk.CTkButton(
+            self.left_frame,
+            text="Мощность A",
+            command=lambda: self.show_result(
+                "size_of_set(A)", size_of_set(self.sets["A"])
+            )
+        )
+        self.size_button.pack(pady=5)
+
+        self.complement_b_button = ctk.CTkButton(
+            self.left_frame,
+            text="Дополнение B",
+            command=lambda: self.show_result(
+                "addition(B, U)",
+                addition(self.sets["B"], self.sets["U"])
+            )
+        )
+        self.complement_b_button.pack(pady=5)
+
+        self.subsets_b_button = ctk.CTkButton(
+            self.left_frame,
+            text="Подмножества B",
+            command=lambda: self.show_result(
+                "subsets(B)", subsets(self.sets["B"])
+            )
+        )
+        self.subsets_b_button.pack(pady=5)
+
+        self.size_b_button = ctk.CTkButton(
+            self.left_frame,
+            text="Мощность B",
+            command=lambda: self.show_result(
+                "size_of_set(B)", size_of_set(self.sets["B"])
+            )
+        )
+        self.size_b_button.pack(pady=5)
+
+        self.right_frame = ctk.CTkFrame(self.function_window)
+        self.right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
+        self.right_label = ctk.CTkLabel(
+            self.right_frame,
+            text="Операции над двумя множествами"
+        )
+        self.right_label.pack(pady=10)
+
+        self.union_button = ctk.CTkButton(
+            self.right_frame,
+            text="Объединение A и B",
+            command=lambda: self.show_result(
+                "union", union(self.sets["A"], self.sets["B"])
+            )
+        )
+        self.union_button.pack(pady=5)
+
+        self.intersection_button = ctk.CTkButton(
+            self.right_frame,
+            text="Пересечение A и B",
+            command=lambda: self.show_result(
+                "intersection", intersection(self.sets["A"], self.sets["B"])
+            )
+        )
+        self.intersection_button.pack(pady=5)
+
+        self.diff_button = ctk.CTkButton(
+            self.right_frame,
+            text="Разность A - B",
+            command=lambda: self.show_result(
+                "diff(A, B)", diff(self.sets["A"], self.sets["B"])
+            )
+        )
+        self.diff_button.pack(pady=5)
+
+        self.diff_b_a_button = ctk.CTkButton(
+            self.right_frame,
+            text="Разность B - A",
+            command=lambda: self.show_result(
+                "diff(B, A)", diff(self.sets["B"], self.sets["A"])
+            )
+        )
+        self.diff_b_a_button.pack(pady=5)
+
+        self.symmetric_diff_button = ctk.CTkButton(
+            self.right_frame,
+            text="Симметрическая разность",
+            command=lambda: self.show_result(
+                "symmetric_diff",
+                symmetric_diff(self.sets["A"], self.sets["B"]),
+            )
+        )
+        self.symmetric_diff_button.pack(pady=5)
+
+    def show_result(self, function_name, result):
+        self.result_label.configure(
+            text=f"Функция: {function_name}\nРезультат: {result}"
+        )
+        self.result_label.pack(pady=10)
+        self.function_window.destroy()
+
 
 if __name__ == "__main__":
     app = SetsApp()
