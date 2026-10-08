@@ -26,7 +26,7 @@ class SetsApp(ctk.CTk):
     def _create_widgets(self):
         self.label_U = ctk.CTkLabel(
             self,
-            text="Введите элементы универсального множества через запятую",
+            text="Введите элементы универсального множества через запятую и пробел",
         )
         self.label_U.pack()
 
@@ -44,7 +44,7 @@ class SetsApp(ctk.CTk):
 
         self.label_A = ctk.CTkLabel(
             self,
-            text="Введите элементы множества A через запятую",
+            text="Введите элементы множества A через запятую и пробел",
         )
         self.entry_A = ctk.CTkEntry(self)
         self.button_A = ctk.CTkButton(
@@ -57,7 +57,7 @@ class SetsApp(ctk.CTk):
 
         self.label_B = ctk.CTkLabel(
             self,
-            text="Введите элементы множества B через запятую",
+            text="Введите элементы множества B через запятую и пробел",
         )
         self.entry_B = ctk.CTkEntry(self)
         self.button_B = ctk.CTkButton(
