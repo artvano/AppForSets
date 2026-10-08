@@ -5,6 +5,20 @@ def check_univers(A, B, U): #Проверка на универс изменен
     new_A = [A[i] for i in range(len(A)) if A[i] in U]
     new_B = [B[i] for i in range(len(B)) if B[i] in U]
 
+    i = 0
+    while i != len(new_A): #Исключение повторяющихся элементов списка
+        if new_A.count(new_A[i]) > 1:
+            new_A.pop(i)
+        else:
+            i += 1
+
+    i = 0
+    while i != len(new_B):
+        if new_B.count(new_B[i]) > 1:
+            new_B.pop(i)
+        else:
+            i += 1
+
     if A != new_A:
         flag_for_A = False
 
