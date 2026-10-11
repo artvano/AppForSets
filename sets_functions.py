@@ -4,16 +4,22 @@ def check_univers(A, B, U): #Проверка на универс изменен
 
     for_A = {}
     for_B = {}
+    for_U = {}
+
+    for elem in U: #Удаление повторяющихся элементов списка
+            if elem not in for_U:
+                for_U[elem] = True
+    U[:] = list(for_U)
     
-    for elem in A: #Удаление повторяющихся элементов списка
+    for elem in A:
         if elem not in for_A:
             for_A[elem] = True
-    A = list(for_A)
+    A[:] = list(for_A)
     
     for elem in B:
         if elem not in for_B:
             for_B[elem] = True
-    B = list(for_B)
+    B[:] = list(for_B)
 
     new_A = [A[i] for i in range(len(A)) if A[i] in U]
     new_B = [B[i] for i in range(len(B)) if B[i] in U]
